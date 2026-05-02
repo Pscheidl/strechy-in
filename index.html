@@ -174,19 +174,66 @@
 
     @media (max-width: 860px) {
       .hamburger { display: inline-flex; }
-      .nav-links {
-        position: fixed;
+
+      /* When menu is open, the nav itself becomes the fullscreen container.
+         backdrop-filter on .nav would otherwise trap fixed children inside the
+         72px header bar, so we drop it here and use a solid background. */
+      .nav.menu-open {
         inset: 0;
-        flex-direction: column;
-        justify-content: center;
-        gap: 2rem;
+        height: 100dvh;
         background: var(--bg);
-        font-size: 1.5rem;
-        transform: translateX(100%);
-        transition: transform .4s var(--ease);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border-bottom-color: transparent;
       }
-      .nav-links a { font-size: 1.4rem; }
-      .nav-links a.cta { font-size: 1rem; }
+      .nav.menu-open .nav-inner {
+        height: auto;
+        align-items: flex-start;
+        padding-top: 0;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 72px;
+        left: 0; right: 0;
+        bottom: 0;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 0;
+        padding: 1.2rem clamp(1.1rem, 5vw, 2rem) 2.5rem;
+        background: var(--bg);
+        font-size: 1.4rem;
+        transform: translateX(100%);
+        transition: transform .35s var(--ease);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+      }
+      .nav-links li {
+        list-style: none;
+        border-bottom: 1px solid var(--line);
+      }
+      .nav-links li:last-child {
+        border-bottom: 0;
+        margin-top: 1.2rem;
+      }
+      .nav-links a {
+        display: block;
+        padding: 1.1rem .25rem;
+        font-size: 1.35rem;
+        font-weight: 500;
+        color: var(--ink);
+        letter-spacing: -.01em;
+      }
+      .nav-links a:hover { color: var(--accent); }
+      .nav-links a.cta {
+        text-align: center;
+        padding: 1rem 1.2rem;
+        font-size: 1.05rem;
+        background: var(--ink);
+        color: var(--bg);
+      }
+      .nav-links a.cta:hover { background: var(--accent); color: #fff; }
       .nav-links.open { transform: translateX(0); }
     }
 
@@ -1384,23 +1431,24 @@
 
 <script>
   // Mobile nav
+  const nav = document.getElementById('nav');
   const burger = document.getElementById('hamburger');
   const menu = document.getElementById('nav-menu');
-  burger.addEventListener('click', () => {
-    const open = menu.classList.toggle('open');
-    burger.classList.toggle('open');
+  const setMenu = (open) => {
+    menu.classList.toggle('open', open);
+    burger.classList.toggle('open', open);
+    nav.classList.toggle('menu-open', open);
     burger.setAttribute('aria-expanded', open);
     document.body.style.overflow = open ? 'hidden' : '';
+  };
+  burger.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  // Close if viewport grows past mobile breakpoint while open
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 860 && menu.classList.contains('open')) setMenu(false);
   });
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    menu.classList.remove('open');
-    burger.classList.remove('open');
-    burger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  }));
 
   // Nav scrolled state
-  const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
   document.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
