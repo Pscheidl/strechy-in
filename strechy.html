@@ -12,7 +12,10 @@
 <header class="navbar">
   <div class="container">
     <a href="index.html" class="logo">STŘECHY<span>IN</span></a>
-    <nav>
+    <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="nav-menu">
       <ul>
         <li><a href="index.html">Domů</a></li>
         <li><a href="strechy.html" class="active">Střechy</a></li>
@@ -79,5 +82,8 @@
   </div>
 </footer>
 
+<script>
+  (function(){var b=document.getElementById('hamburger'),n=document.getElementById('nav-menu');b.addEventListener('click',function(){var o=n.classList.toggle('open');b.classList.toggle('open');b.setAttribute('aria-expanded',o);});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded','false');});});})();
+</script>
 </body>
 </html>

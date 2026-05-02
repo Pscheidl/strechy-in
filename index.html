@@ -3,97 +3,1418 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tesařství – střechy – interiéry | Slavomír Konvalinka strechy-in.cz</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Střechy-Interiéry – Slavomír Konvalinka. Tesařské, pokrývačské, klempířské a truhlářské práce. Kompletní rekonstrukce střech a interiérů. Liberecký kraj, Praha a Středočeský kraj.">
+  <meta name="theme-color" content="#161413">
+  <title>Střechy-Interiéry · Slavomír Konvalinka — řemeslné práce od roku 2000</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f1ea;
+      --bg-2: #ede5d8;
+      --ink: #161413;
+      --ink-2: #3a3431;
+      --muted: #6f6660;
+      --line: #e0d6c5;
+      --accent: #c2522a;
+      --accent-2: #e57b3f;
+      --accent-soft: #f5dfd0;
+      --max: 1240px;
+      --r-sm: 10px;
+      --r-md: 18px;
+      --r-lg: 28px;
+      --shadow-sm: 0 1px 2px rgba(20,16,12,.06), 0 4px 12px rgba(20,16,12,.04);
+      --shadow-md: 0 8px 24px rgba(20,16,12,.08), 0 2px 8px rgba(20,16,12,.05);
+      --shadow-lg: 0 30px 60px -20px rgba(20,16,12,.25), 0 12px 24px -12px rgba(20,16,12,.12);
+      --ease: cubic-bezier(.2,.7,.2,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+      font-size: clamp(15px, 1vw + 0.6rem, 17px);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+
+    h1, h2, h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0 0 .4em;
+      color: var(--ink);
+    }
+    h1 { font-size: clamp(2.6rem, 6vw + .5rem, 6.2rem); font-weight: 800; }
+    h2 { font-size: clamp(2rem, 3vw + 1rem, 3.6rem); }
+    h3 { font-size: clamp(1.15rem, .6vw + 1rem, 1.4rem); font-weight: 600; letter-spacing: -0.01em; }
+    p  { margin: 0 0 1em; color: var(--ink-2); }
+
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 clamp(1.1rem, 3vw, 2rem);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      font-size: .78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    /* ========= NAV ========= */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 50;
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      background: rgba(246,241,234,.72);
+      border-bottom: 1px solid transparent;
+      transition: border-color .25s var(--ease), background .25s var(--ease);
+    }
+    .nav.scrolled {
+      border-color: var(--line);
+      background: rgba(246,241,234,.85);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .logo {
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: -.01em;
+      display: inline-flex;
+      align-items: baseline;
+      gap: .15rem;
+    }
+    .logo .dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: .55rem;
+      transform: translateY(-3px);
+    }
+    .logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: clamp(1rem, 2vw, 2rem);
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      font-size: .95rem;
+      font-weight: 500;
+      color: var(--ink-2);
+      transition: color .2s;
+      position: relative;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a.cta {
+      background: var(--ink);
+      color: var(--bg);
+      padding: .65rem 1.1rem;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    .nav-links a.cta:hover { background: var(--accent); color: #fff; }
+
+    .hamburger {
+      display: none;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 60;
+    }
+    .hamburger span {
+      position: absolute;
+      width: 22px; height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform .3s var(--ease), opacity .2s;
+    }
+    .hamburger span:nth-child(1) { transform: translateY(-6px); }
+    .hamburger span:nth-child(3) { transform: translateY(6px); }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg); }
+
+    @media (max-width: 860px) {
+      .hamburger { display: inline-flex; }
+      .nav-links {
+        position: fixed;
+        inset: 0;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        background: var(--bg);
+        font-size: 1.5rem;
+        transform: translateX(100%);
+        transition: transform .4s var(--ease);
+      }
+      .nav-links a { font-size: 1.4rem; }
+      .nav-links a.cta { font-size: 1rem; }
+      .nav-links.open { transform: translateX(0); }
+    }
+
+    /* ========= HERO ========= */
+    .hero {
+      position: relative;
+      padding: clamp(8rem, 14vh, 11rem) 0 clamp(3rem, 6vw, 5rem);
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(60% 50% at 85% 20%, rgba(229,123,63,.18), transparent 70%),
+        radial-gradient(40% 40% at 10% 90%, rgba(194,82,42,.10), transparent 70%);
+      z-index: -1;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: end;
+    }
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: 1fr; }
+    }
+    .hero h1 .accent {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent);
+      position: relative;
+    }
+    .hero-lead {
+      font-size: clamp(1.1rem, .5vw + .9rem, 1.25rem);
+      max-width: 38ch;
+      color: var(--ink-2);
+      margin: 1.4rem 0 2rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .8rem;
+      align-items: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      padding: 1rem 1.4rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: .98rem;
+      transition: transform .2s var(--ease), background .2s, color .2s, box-shadow .2s;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: var(--ink);
+      color: var(--bg);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+    .btn-ghost:hover { background: var(--ink); color: var(--bg); }
+    .btn .arrow { transition: transform .2s; }
+    .btn:hover .arrow { transform: translateX(3px); }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      padding: 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      background: rgba(255,255,255,.5);
+      backdrop-filter: blur(8px);
+    }
+    .hero-stat .num {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .hero-stat .lbl {
+      font-size: .82rem;
+      color: var(--muted);
+      margin-top: .35rem;
+      line-height: 1.3;
+    }
+
+    /* Hero visual / sticker */
+    .hero-visual {
+      position: relative;
+      aspect-ratio: 4/5;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, #2a2422 0%, #4a3a30 50%, #6e4a30 100%);
+      box-shadow: var(--shadow-lg);
+    }
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          135deg,
+          transparent 0,
+          transparent 18px,
+          rgba(255,255,255,.04) 18px,
+          rgba(255,255,255,.04) 19px
+        ),
+        repeating-linear-gradient(
+          45deg,
+          rgba(0,0,0,.18) 0,
+          rgba(0,0,0,.18) 1px,
+          transparent 1px,
+          transparent 28px
+        );
+      mix-blend-mode: overlay;
+    }
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(60% 40% at 30% 30%, rgba(229,123,63,.35), transparent 60%);
+    }
+    .hero-tag {
+      position: absolute;
+      top: 1.2rem;
+      left: 1.2rem;
+      padding: .45rem .85rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,.92);
+      color: var(--ink);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+    .hero-quote {
+      position: absolute;
+      bottom: 1.4rem;
+      left: 1.4rem;
+      right: 1.4rem;
+      color: #f6e9d8;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.05rem, 1.3vw, 1.35rem);
+      font-style: italic;
+      line-height: 1.4;
+      z-index: 2;
+    }
+    .hero-quote cite {
+      display: block;
+      margin-top: .8rem;
+      font-style: normal;
+      font-family: 'Inter', sans-serif;
+      font-size: .85rem;
+      color: rgba(246,233,216,.7);
+      letter-spacing: .05em;
+    }
+
+    /* Scroll marquee */
+    .marquee {
+      border-block: 1px solid var(--line);
+      background: var(--bg-2);
+      overflow: hidden;
+      padding: .9rem 0;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 3rem;
+      animation: scroll 40s linear infinite;
+      white-space: nowrap;
+      width: max-content;
+    }
+    .marquee-track span {
+      display: inline-flex;
+      align-items: center;
+      gap: 3rem;
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+      color: var(--ink-2);
+    }
+    .marquee-track span::after {
+      content: "✦";
+      color: var(--accent);
+      font-style: normal;
+    }
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ========= SECTIONS ========= */
+    section { padding: clamp(4rem, 8vw, 7rem) 0; }
+    .section-head {
+      max-width: 56ch;
+      margin-bottom: clamp(2rem, 4vw, 3.5rem);
+    }
+    .section-head.center { margin-inline: auto; text-align: center; }
+    .section-head p { font-size: 1.05rem; color: var(--muted); max-width: 50ch; }
+    .section-head.center p { margin-inline: auto; }
+
+    /* ========= ABOUT ========= */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 4vw, 4rem);
+      align-items: center;
+    }
+    @media (max-width: 880px) { .about-grid { grid-template-columns: 1fr; } }
+
+    .about-text p { font-size: 1.05rem; }
+    .about-text p:first-of-type::first-letter {
+      font-family: 'Fraunces', serif;
+      font-size: 3.2rem;
+      float: left;
+      line-height: .85;
+      padding: .35rem .55rem 0 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .checks {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .8rem 1.5rem;
+    }
+    @media (max-width: 480px) { .checks { grid-template-columns: 1fr; } }
+    .checks li {
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+      font-size: .95rem;
+      color: var(--ink-2);
+    }
+    .checks li::before {
+      content: "";
+      flex: 0 0 auto;
+      width: 18px; height: 18px;
+      margin-top: 3px;
+      border-radius: 50%;
+      background: var(--accent);
+      background-image:
+        linear-gradient(45deg, transparent 45%, #fff 45% 55%, transparent 55%),
+        linear-gradient(-45deg, transparent 45%, #fff 45% 55%, transparent 55%);
+      background-size: 10px 2px, 6px 2px;
+      background-position: 4px 9px, 8px 11px;
+      background-repeat: no-repeat;
+    }
+
+    .about-visual {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: 80px;
+      gap: 12px;
+    }
+    .about-visual .tile {
+      border-radius: var(--r-md);
+      background: var(--bg-2);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--line);
+    }
+    .about-visual .tile::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: .8rem;
+      left: 1rem;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: .04em;
+    }
+    .about-visual .tile.t1 { grid-column: 1 / 4; grid-row: 1 / 3; background: linear-gradient(135deg, #c2522a, #e57b3f); }
+    .about-visual .tile.t1::after { color: #fff; }
+    .about-visual .tile.t2 { grid-column: 4 / 7; grid-row: 1 / 2; background: var(--ink); }
+    .about-visual .tile.t2::after { color: var(--bg); }
+    .about-visual .tile.t3 { grid-column: 4 / 7; grid-row: 2 / 4;
+      background: repeating-linear-gradient(45deg, #3a3431 0 18px, #2a2422 18px 36px);
+    }
+    .about-visual .tile.t3::after { color: var(--accent-soft); }
+    .about-visual .tile.t4 { grid-column: 1 / 3; grid-row: 3 / 5; background: var(--accent-soft); }
+    .about-visual .tile.t5 { grid-column: 3 / 5; grid-row: 4 / 5; background: #d8c9b1; }
+    .about-visual .tile.t6 { grid-column: 5 / 7; grid-row: 4 / 5; background: linear-gradient(135deg, var(--bg-2), var(--bg)); }
+
+    /* ========= SERVICES ========= */
+    .services-section { background: var(--bg-2); position: relative; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .service-card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      padding: 1.6rem;
+      transition: transform .4s var(--ease), box-shadow .4s, border-color .3s;
+      position: relative;
+      overflow: hidden;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+    }
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -40% -40% auto;
+      width: 200px; height: 200px;
+      background: radial-gradient(closest-side, rgba(229,123,63,.18), transparent);
+      opacity: 0;
+      transition: opacity .4s, transform .5s var(--ease);
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: var(--shadow-lg);
+    }
+    .service-card:hover::before { opacity: 1; transform: scale(1.3); }
+    .service-card .num {
+      font-family: 'Fraunces', serif;
+      font-size: .95rem;
+      color: var(--muted);
+      letter-spacing: .08em;
+    }
+    .service-card .icon {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      margin: .8rem 0 1.2rem;
+      transition: background .3s, color .3s;
+    }
+    .service-card:hover .icon { background: var(--accent); color: #fff; }
+    .service-card .icon svg { width: 26px; height: 26px; stroke-width: 1.6; }
+    .service-card h3 { margin-bottom: .4rem; }
+    .service-card p { color: var(--muted); font-size: .96rem; margin-bottom: 0; flex: 1; }
+    .service-card .more {
+      margin-top: 1.2rem;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--ink);
+      display: inline-flex;
+      gap: .3rem;
+      align-items: center;
+      letter-spacing: .03em;
+    }
+
+    /* ========= PROCESS ========= */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      counter-reset: step;
+    }
+    @media (max-width: 880px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .process-grid { grid-template-columns: 1fr; } }
+    .step {
+      padding: 1.6rem;
+      border-radius: var(--r-md);
+      border: 1px solid var(--line);
+      background: var(--bg);
+      position: relative;
+      transition: border-color .3s, background .3s;
+    }
+    .step:hover { border-color: var(--ink); }
+    .step::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 2.4rem;
+      color: var(--accent);
+      line-height: 1;
+      display: block;
+      margin-bottom: 1rem;
+      letter-spacing: -.03em;
+    }
+    .step h3 { font-size: 1.1rem; margin-bottom: .5rem; }
+    .step p { font-size: .92rem; color: var(--muted); margin: 0; }
+
+    /* ========= REFERENCES ========= */
+    .refs-section { background: var(--bg-2); }
+    .refs-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: clamp(140px, 14vw, 200px);
+      gap: 12px;
+    }
+    @media (max-width: 760px) {
+      .refs-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
+    }
+    .ref {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--r-md);
+      background: var(--ink);
+      box-shadow: var(--shadow-sm);
+      isolation: isolate;
+      cursor: zoom-in;
+    }
+    .ref img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .8s var(--ease), filter .4s;
+      filter: saturate(.9) contrast(1.02);
+    }
+    .ref::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(20,16,12,.85) 100%);
+      opacity: .6;
+      transition: opacity .3s;
+      pointer-events: none;
+    }
+    .ref:hover img { transform: scale(1.06); filter: saturate(1.05) contrast(1.05); }
+    .ref:hover::after { opacity: .85; }
+    .ref-cap {
+      position: absolute;
+      left: 1.1rem;
+      right: 1.1rem;
+      bottom: 1rem;
+      z-index: 2;
+      color: #fff;
+      transform: translateY(8px);
+      transition: transform .35s var(--ease);
+    }
+    .ref:hover .ref-cap { transform: none; }
+    .ref-cap .tag {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      margin-bottom: .35rem;
+    }
+    .ref-cap h3 {
+      color: #fff;
+      font-size: clamp(1rem, .5vw + .85rem, 1.2rem);
+      line-height: 1.25;
+      margin: 0;
+      font-weight: 600;
+    }
+    .ref-1 { grid-column: span 6; grid-row: span 2; }
+    .ref-2 { grid-column: span 6; grid-row: span 1; }
+    .ref-3 { grid-column: span 3; grid-row: span 1; }
+    .ref-4 { grid-column: span 3; grid-row: span 1; }
+    .ref-5 { grid-column: span 4; grid-row: span 1; }
+    .ref-6 { grid-column: span 8; grid-row: span 1; }
+    @media (max-width: 760px) {
+      .ref-1, .ref-2, .ref-3, .ref-4, .ref-5, .ref-6 { grid-column: span 1; grid-row: span 1; }
+      .ref-1 { grid-column: span 2; grid-row: span 2; }
+    }
+
+    /* ========= REGION ========= */
+    .region-section {
+      background: var(--ink);
+      color: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+    .region-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(40% 40% at 80% 20%, rgba(229,123,63,.25), transparent 70%),
+        radial-gradient(50% 50% at 10% 90%, rgba(194,82,42,.15), transparent 70%);
+      pointer-events: none;
+    }
+    .region-section h2 { color: var(--bg); }
+    .region-section .eyebrow { color: var(--accent-2); }
+    .region-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 4vw, 4rem);
+      align-items: center;
+      position: relative;
+    }
+    @media (max-width: 880px) { .region-grid { grid-template-columns: 1fr; } }
+    .region-text p { color: rgba(246,241,234,.75); font-size: 1.05rem; }
+    .region-cities {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+    }
+    .region-cities li {
+      padding: .55rem 1rem;
+      border: 1px solid rgba(246,241,234,.2);
+      border-radius: 999px;
+      font-size: .9rem;
+      color: var(--bg);
+      background: rgba(255,255,255,.04);
+    }
+    .region-cities li.highlight {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      font-weight: 600;
+    }
+    .region-map {
+      aspect-ratio: 4/3;
+      border-radius: var(--r-lg);
+      background:
+        linear-gradient(135deg, #1f1b1a, #2c2624);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(246,241,234,.08);
+    }
+    .region-map svg { width: 100%; height: 100%; display: block; }
+
+    /* ========= TESTIMONIAL ========= */
+    .testimonial-section { padding-block: clamp(5rem, 9vw, 8rem); }
+    .quote-block {
+      max-width: 60ch;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .quote-block blockquote {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.6rem, 3vw, 2.6rem);
+      line-height: 1.25;
+      letter-spacing: -.015em;
+      margin: 0 0 1.5rem;
+      color: var(--ink);
+      font-weight: 400;
+    }
+    .quote-block blockquote::before {
+      content: "“";
+      display: block;
+      font-size: 4rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: -1rem;
+    }
+    .quote-author {
+      font-size: .9rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* ========= CONTACT ========= */
+    .contact-section {
+      background: var(--bg-2);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: clamp(2rem, 4vw, 4rem);
+      align-items: stretch;
+    }
+    @media (max-width: 880px) { .contact-grid { grid-template-columns: 1fr; } }
+    .contact-card {
+      background: var(--ink);
+      color: var(--bg);
+      border-radius: var(--r-lg);
+      padding: clamp(2rem, 4vw, 3rem);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -30% -50% auto;
+      width: 360px; height: 360px;
+      background: radial-gradient(closest-side, rgba(229,123,63,.5), transparent);
+      pointer-events: none;
+    }
+    .contact-card h2 { color: var(--bg); }
+    .contact-card .eyebrow { color: var(--accent-2); }
+    .contact-card p { color: rgba(246,241,234,.75); }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.8rem 0 0;
+      display: grid;
+      gap: 1.1rem;
+    }
+    .contact-list li {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .contact-list .ic {
+      flex: 0 0 auto;
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.08);
+      display: grid;
+      place-items: center;
+      color: var(--accent-2);
+    }
+    .contact-list .ic svg { width: 20px; height: 20px; stroke-width: 1.8; }
+    .contact-list .lbl {
+      display: block;
+      font-size: .8rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(246,241,234,.55);
+      margin-bottom: .15rem;
+    }
+    .contact-list .val {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--bg);
+      line-height: 1.4;
+    }
+    .contact-list .val a:hover { color: var(--accent-2); }
+
+    .contact-form {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      padding: clamp(2rem, 4vw, 3rem);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-form h3 { font-size: 1.4rem; margin-bottom: .2rem; }
+    .field { display: flex; flex-direction: column; gap: .35rem; }
+    .field label {
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      color: var(--ink-2);
+    }
+    .field input, .field textarea, .field select {
+      width: 100%;
+      padding: .85rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: var(--r-sm);
+      font: inherit;
+      background: var(--bg);
+      color: var(--ink);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(194,82,42,.15);
+    }
+    .field textarea { min-height: 120px; resize: vertical; }
+    .row2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 480px) { .row2 { grid-template-columns: 1fr; } }
+    .form-submit { align-self: flex-start; margin-top: .5rem; }
+    .form-note { font-size: .8rem; color: var(--muted); margin: 0; }
+
+    /* ========= FOOTER ========= */
+    footer {
+      background: var(--ink);
+      color: rgba(246,241,234,.65);
+      padding: 4rem 0 2rem;
+    }
+    .foot-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 760px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .foot-grid { grid-template-columns: 1fr; gap: 2rem; } }
+    footer h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: .8rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(246,241,234,.55);
+      margin: 0 0 1rem;
+      font-weight: 600;
+    }
+    footer .logo { color: var(--bg); margin-bottom: 1rem; }
+    footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .6rem; }
+    footer a:hover { color: var(--accent-2); }
+    footer .tag { font-size: .9rem; line-height: 1.6; max-width: 32ch; }
+    .foot-bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(246,241,234,.1);
+      font-size: .82rem;
+      color: rgba(246,241,234,.45);
+    }
+
+    /* ========= REVEAL ========= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .8s var(--ease), transform .8s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+  </style>
 </head>
 <body>
 
-<header class="navbar">
-  <div class="container">
-    <a href="index.html" class="logo">STŘECHY<span>IN</span></a>
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="logo" aria-label="Domů">
+      <span class="dot" aria-hidden="true"></span>STŘECHY<span>·IN</span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="nav-menu">
+      <span></span><span></span><span></span>
+    </button>
     <nav>
-      <ul>
-        <li><a href="index.html" class="active">Domů</a></li>
-        <li><a href="strechy.html">Střechy</a></li>
-        <li><a href="interiery.html">Interiéry</a></li>
-        <li><a href="galerie.html">Fotogalerie</a></li>
-        <li><a href="dodavatele.html">Partneři</a></li>
-        <li><a href="kontakt.html" class="btn-small">Kontakt</a></li>
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="#o-nas">O nás</a></li>
+        <li><a href="#sluzby">Služby</a></li>
+        <li><a href="#postup">Postup</a></li>
+        <li><a href="#reference">Reference</a></li>
+        <li><a href="#region">Region</a></li>
+        <li><a href="#kontakt" class="cta">Kontakt</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
-<section class="hero">
-  <div class="container">
-    <h1>Vítejte na stránkách Střechy–interiéry.cz</h1>
-    <p>Firma Střechy-Interiéry byla založena na jaře roku 2000, i když zkušenosti v oboru tesařství, pokrývačství a klempířství sahají až do roku 1993.</p>
-    <p>Krédem naší firmy je vždy spokojený zákazník, ovšem nikoliv za každou „cenu". Jsme schopni vyhovět náročným zákazníkům i zákazníkům s omezeným rozpočtem.</p>
-    <div class="hero-btns">
-      <a href="#kontakt" class="btn-primary">Nezávazná kalkulace</a>
-      <a href="#sluzby" class="btn-secondary">Naše služby</a>
-    </div>
-  </div>
-</section>
+<main id="top">
 
-<section id="sluzby" class="services">
-  <div class="container">
-    <h2 class="section-title">Co pro vás zajistíme</h2>
-    <div class="grid">
-      <div class="card">
-        <div class="icon">🔨</div>
-        <h3>Tesařství</h3>
-        <p>Tradiční řemeslo s moderní technikou – krovy, vazníky a dřevěné konstrukce s přesnými výpočty.</p>
-      </div>
-      <div class="card">
-        <div class="icon">🏠</div>
-        <h3>Pokrývačství</h3>
-        <p>Nové střechy na klíč i rekonstrukce – od krovu až po poslední tašku, vč. zateplení podkroví.</p>
-      </div>
-      <div class="card">
-        <div class="icon">🛠️</div>
-        <h3>Klempířství</h3>
-        <p>Oplechování, okapové systémy a veškeré klempířské práce z kvalitních materiálů s prodlouženou zárukou.</p>
-      </div>
-      <div class="card">
-        <div class="icon">🪟</div>
-        <h3>Interiéry</h3>
-        <p>Kompletní interiérové práce – podkrovní vestavby, sádrokarton, podlahy a další.</p>
-      </div>
-    </div>
-    <div class="section-info">
-      <p>Za prostředky našich zákazníků nabízíme vždy jen maximálně odvedenou montáž z kvalitních materiálů, odborný přístup a prodloužené záruční lhůty. Všechny zakázky jsou podloženy smlouvou o dílo s pevným rozpočtem. Konzultace a příprava nabídky jsou zdarma. Působíme v Libereckém kraji, Středočeském kraji a Praze.</p>
-    </div>
-  </div>
-</section>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text reveal">
+        <span class="eyebrow">Tesařství · Pokrývačství · Klempířství · Interiéry</span>
+        <h1>Řemeslo,<br>které <span class="accent">drží</span><br>desetiletí.</h1>
+        <p class="hero-lead">
+          Od roku 2000 stavíme střechy a interiéry s důrazem na kvalitu materiálu,
+          poctivou montáž a prodlouženou záruku. Pro náročné i pro ty, kdo
+          potřebují řešení v rozumném rozpočtu.
+        </p>
+        <div class="hero-actions">
+          <a href="#kontakt" class="btn btn-primary">
+            Získat nabídku zdarma
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="#sluzby" class="btn btn-ghost">Co umíme</a>
+        </div>
 
-<section id="kontakt" class="contact">
-  <div class="container">
-    <div class="contact-box">
-      <h2>Kontakt</h2>
-      <p>Máte dotaz nebo chcete nacenit projekt? Ozvěte se nám – konzultace a příprava nabídky jsou zdarma.</p>
-      <div class="contact-details">
-        <p><strong>Slavomír Konvalinka</strong></p>
-        <p>Vyskeř 92, 511 01 Turnov</p>
-        <p>Tel.: <a href="tel:+420607944599">+420 607 944 599</a></p>
-        <p>E-mail: <a href="mailto:info@strechy-in.cz">info@strechy-in.cz</a></p>
+        <div class="hero-stats" style="margin-top: 2.4rem;">
+          <div class="hero-stat">
+            <div class="num">26+</div>
+            <div class="lbl">let zkušeností od&nbsp;roku 2000</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num">5</div>
+            <div class="lbl">řemesel pod jednou střechou</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num">100%</div>
+            <div class="lbl">písemné smlouvy a&nbsp;pevný rozpočet</div>
+          </div>
+        </div>
       </div>
-      <form>
-        <input type="text" placeholder="Vaše jméno" required>
-        <input type="email" placeholder="Váš e-mail" required>
-        <textarea placeholder="Popište váš projekt..."></textarea>
-        <button type="submit" class="btn-primary">Odeslat poptávku</button>
-      </form>
+
+      <div class="hero-visual reveal" aria-hidden="true">
+        <span class="hero-tag">Od roku 2000</span>
+        <p class="hero-quote">
+          „Naším krédem je spokojený zákazník &mdash; bez kompromisů
+          v&nbsp;kvalitě materiálu i&nbsp;práce.“
+          <cite>— Slavomír Konvalinka</cite>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Tesařské práce</span>
+      <span>Krovy na míru</span>
+      <span>Pokrývačské práce</span>
+      <span>Klempířské prvky</span>
+      <span>Truhlářství</span>
+      <span>Pergoly &amp; altány</span>
+      <span>Interiéry</span>
+      <span>Tesařské práce</span>
+      <span>Krovy na míru</span>
+      <span>Pokrývačské práce</span>
+      <span>Klempířské prvky</span>
+      <span>Truhlářství</span>
+      <span>Pergoly &amp; altány</span>
+      <span>Interiéry</span>
     </div>
   </div>
-</section>
+
+  <!-- ABOUT -->
+  <section id="o-nas">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <span class="eyebrow">O nás</span>
+          <h2>Rodinné řemeslo se&nbsp;zkušeností od&nbsp;roku 1993.</h2>
+          <p>
+            Firma Slavomíra Konvalinky vznikla na&nbsp;jaře roku 2000 a&nbsp;navazuje
+            na&nbsp;zkušenosti z&nbsp;předchozí praxe od&nbsp;roku 1993. Od&nbsp;začátku
+            stojíme na&nbsp;jednoduché myšlence: spokojený zákazník je&nbsp;ten, který
+            dostane kvalitní materiál, poctivě odvedenou práci a&nbsp;předem dohodnutou cenu.
+          </p>
+          <p>
+            Umíme se&nbsp;přizpůsobit náročné zakázce i&nbsp;omezenému rozpočtu &mdash;
+            navrhneme úsporné řešení, které dává dlouhodobě smysl. U&nbsp;rekonstrukcí
+            vás předem upozorníme na&nbsp;skryté závady a&nbsp;přijdeme s&nbsp;variantou,
+            jak je&nbsp;vyřešit.
+          </p>
+          <ul class="checks">
+            <li>Písemné smlouvy a pevný rozpočet</li>
+            <li>Prodloužené záruky na&nbsp;dílo</li>
+            <li>Konzultace a&nbsp;kalkulace zdarma</li>
+            <li>Dodávka materiálu za&nbsp;dobré ceny</li>
+          </ul>
+        </div>
+
+        <div class="about-visual reveal" aria-hidden="true">
+          <div class="tile t1" data-label="Tesařství"></div>
+          <div class="tile t2" data-label="Krovy"></div>
+          <div class="tile t3" data-label="Pokrývačství"></div>
+          <div class="tile t4" data-label="Truhlářství"></div>
+          <div class="tile t5" data-label="Klempíř."></div>
+          <div class="tile t6" data-label="Interiéry"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="sluzby" class="services-section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Služby</span>
+        <h2>Pět řemesel, jedno&nbsp;dílo.</h2>
+        <p>Kompletní servis pro vaši střechu a interiér &mdash; od návrhu krovu až po finální klempířské prvky a vnitřní vybavení.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card reveal">
+          <span class="num">01</span>
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 11.5L12 4l9 7.5"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>
+          </div>
+          <h3>Střechy &mdash; kompletní servis</h3>
+          <p>Rekonstrukce i&nbsp;novostavby rovných i&nbsp;šikmých střech, včetně dodávky veškerého materiálu za&nbsp;přijatelné ceny.</p>
+        </article>
+
+        <article class="service-card reveal">
+          <span class="num">02</span>
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 20l8-8"/><path d="M14 7l3-3 4 4-3 3z"/><path d="M11 12l4 4"/><path d="M9 14l-3 3 1 1 3-3"/></svg>
+          </div>
+          <h3>Tesařské práce</h3>
+          <p>Naše hlavní specializace &mdash; výroba a&nbsp;montáž krovů různých typů a&nbsp;tvarů s&nbsp;důrazem na&nbsp;přesné spoje.</p>
+        </article>
+
+        <article class="service-card reveal">
+          <span class="num">03</span>
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v6H4z"/><path d="M4 14h16v6H4z"/><path d="M9 4v6"/><path d="M15 14v6"/></svg>
+          </div>
+          <h3>Pokrývačské práce</h3>
+          <p>Široká nabídka střešních krytin podle vašich preferencí. Garantujeme kvalitní pokládku a&nbsp;zpracování celého pláště.</p>
+        </article>
+
+        <article class="service-card reveal">
+          <span class="num">04</span>
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 3l-2 5h18l-2-5z"/><path d="M5 8v13"/><path d="M19 8v13"/><path d="M9 21h6"/></svg>
+          </div>
+          <h3>Klempířské práce</h3>
+          <p>Výroba a&nbsp;montáž klempířských prvků ze&nbsp;všech dostupných materiálů na&nbsp;trhu &mdash; titanzinek, měď, hliník i&nbsp;pozink.</p>
+        </article>
+
+        <article class="service-card reveal">
+          <span class="num">05</span>
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 19h18"/><path d="M5 19V9l7-5 7 5v10"/><path d="M9 19v-6h6v6"/></svg>
+          </div>
+          <h3>Truhlářské práce</h3>
+          <p>Zahradní altány, pergoly, terasy, plotové dílce, dveře i&nbsp;vrata &mdash; navrhneme a&nbsp;vyrobíme přesně na&nbsp;míru.</p>
+        </article>
+
+        <article class="service-card reveal">
+          <span class="num">06</span>
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 21V8l9-5 9 5v13"/><path d="M3 13h18"/><path d="M9 21v-5h6v5"/></svg>
+          </div>
+          <h3>Interiéry</h3>
+          <p>Stavební úpravy a&nbsp;dokončovací práce v&nbsp;interiérech &mdash; od&nbsp;dispozice až po&nbsp;detaily, které dělají domov domovem.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="postup">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Jak pracujeme</span>
+        <h2>Žádná překvapení.<br>Žádné polovičaté řešení.</h2>
+        <p>Od první konzultace po předání díla postupujeme transparentně &mdash; s&nbsp;písemnou smlouvou a&nbsp;pevným rozpočtem.</p>
+      </div>
+
+      <div class="process-grid">
+        <div class="step reveal">
+          <h3>Nezávazná konzultace</h3>
+          <p>Přijedeme, prohlédneme stávající stav a&nbsp;společně probereme vaše představy. Bez závazku, bez poplatku.</p>
+        </div>
+        <div class="step reveal">
+          <h3>Návrh a&nbsp;kalkulace</h3>
+          <p>Připravíme řešení s&nbsp;variantami materiálů a&nbsp;přesný rozpočet. Vysvětlíme každou položku.</p>
+        </div>
+        <div class="step reveal">
+          <h3>Smlouva a&nbsp;harmonogram</h3>
+          <p>Vše dáváme na&nbsp;papír &mdash; pevná cena, jasný termín, podmínky záruky. Pak teprve začínáme.</p>
+        </div>
+        <div class="step reveal">
+          <h3>Realizace a&nbsp;předání</h3>
+          <p>Práce odvádíme poctivě, dílo předáváme čisté. Skryté závady řešíme s&nbsp;vámi a&nbsp;nabídneme nejlepší cestu dál.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFERENCES -->
+  <section id="reference" class="refs-section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Reference</span>
+        <h2>Vybrané realizace.</h2>
+        <p>Krovy, krytiny, pergoly a&nbsp;interiéry &mdash; ukázka projektů, které máme za&nbsp;sebou v&nbsp;Libereckém kraji, Praze i&nbsp;Středočeském kraji.</p>
+      </div>
+
+      <div class="refs-grid">
+        <figure class="ref ref-1 reveal">
+          <img src="https://www.strechy-in.cz/galerie/createthumb.php?filename=photos/Bily%20Kostel%20krov%20a%20ramenaty%20klenby%2020.12.2011/P1000754.JPG&size=1400" alt="Krov a ramenaté klenby kostela v Bílém Kostele" loading="lazy" decoding="async">
+          <figcaption class="ref-cap">
+            <span class="tag">Tesařské práce</span>
+            <h3>Krov a&nbsp;klenby &mdash; Bílý Kostel</h3>
+          </figcaption>
+        </figure>
+
+        <figure class="ref ref-2 reveal">
+          <img src="https://www.strechy-in.cz/galerie/createthumb.php?filename=photos/Novostavba%20RD%20Liberec%20montaz%20krovu%20a%20Bramac%20Tegalit%202011/P1090967.JPG&size=1000" alt="Novostavba rodinného domu v Liberci s krytinou Bramac Tegalit" loading="lazy" decoding="async">
+          <figcaption class="ref-cap">
+            <span class="tag">Pokrývačské práce</span>
+            <h3>Novostavba RD &mdash; Liberec, Bramac Tegalit</h3>
+          </figcaption>
+        </figure>
+
+        <figure class="ref ref-3 reveal">
+          <img src="https://www.strechy-in.cz/galerie/createthumb.php?filename=photos/RD%20Albrechtice%20dreveny%20obklad%20a%20krytina%20sindel%20Icopal/albrechtice01.JPG&size=900" alt="Rodinný dům v Albrechticích – dřevěný obklad a šindel Icopal" loading="lazy" decoding="async">
+          <figcaption class="ref-cap">
+            <span class="tag">Krytina · Obklad</span>
+            <h3>RD Albrechtice &mdash; šindel Icopal</h3>
+          </figcaption>
+        </figure>
+
+        <figure class="ref ref-4 reveal">
+          <img src="https://www.strechy-in.cz/galerie/createthumb.php?filename=photos/Pergola%20a%20terasa%20LBC/P1030540.JPG&size=900" alt="Pergola a terasa, Liberec" loading="lazy" decoding="async">
+          <figcaption class="ref-cap">
+            <span class="tag">Truhlářské práce</span>
+            <h3>Pergola a&nbsp;terasa &mdash; Liberec</h3>
+          </figcaption>
+        </figure>
+
+        <figure class="ref ref-5 reveal">
+          <img src="https://www.strechy-in.cz/galerie/createthumb.php?filename=photos/Krov%20altanu%20a%20krytina%20Cembrit%20Maxov%202009/P1060400.JPG&size=900" alt="Krov altánu s krytinou Cembrit, Maxov" loading="lazy" decoding="async">
+          <figcaption class="ref-cap">
+            <span class="tag">Krov · Krytina</span>
+            <h3>Altán Maxov &mdash; Cembrit</h3>
+          </figcaption>
+        </figure>
+
+        <figure class="ref ref-6 reveal">
+          <img src="https://www.strechy-in.cz/galerie/createthumb.php?filename=photos/Vymena%20stresni%20krytiny%20RD%20Mlada%20Boleslav%20krytina%20IKO%202011/P1090880.JPG&size=1100" alt="Výměna střešní krytiny rodinného domu, Mladá Boleslav, krytina IKO" loading="lazy" decoding="async">
+          <figcaption class="ref-cap">
+            <span class="tag">Rekonstrukce střechy</span>
+            <h3>Výměna krytiny &mdash; Mladá Boleslav, IKO</h3>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGION -->
+  <section id="region" class="region-section">
+    <div class="container">
+      <div class="region-grid">
+        <div class="region-text reveal">
+          <span class="eyebrow">Kde pracujeme</span>
+          <h2>Liberecký kraj, Praha a&nbsp;Středočeský kraj.</h2>
+          <p>
+            Sídlíme v&nbsp;Českém ráji a&nbsp;pravidelně realizujeme zakázky
+            v&nbsp;Praze i&nbsp;v&nbsp;celém Středočeském kraji. Pro projekty mimo
+            tato území napište - rádi se&nbsp;domluvíme.
+          </p>
+          <ul class="region-cities">
+            <li class="highlight">Liberec</li>
+            <li class="highlight">Praha</li>
+            <li>Jablonec n. N.</li>
+            <li>Mladá Boleslav</li>
+            <li>Mělník</li>
+            <li>Kladno</li>
+            <li>Česká Lípa</li>
+            <li>Turnov</li>
+            <li>Beroun</li>
+          </ul>
+        </div>
+
+        <div class="region-map reveal" aria-hidden="true">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(246,241,234,.05)" stroke-width="1"/>
+              </pattern>
+              <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#e57b3f" stop-opacity=".7"/>
+                <stop offset="100%" stop-color="#e57b3f" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="400" height="300" fill="url(#grid)"/>
+            <!-- stylized CZ outline -->
+            <path d="M50,160 C40,120 80,70 140,60 C200,50 240,30 280,50 C330,75 360,100 360,150 C360,200 330,240 280,250 C220,260 170,260 120,240 C70,225 55,200 50,160 Z"
+                  fill="rgba(246,241,234,.04)"
+                  stroke="rgba(246,241,234,.25)"
+                  stroke-width="1.5"
+                  stroke-dasharray="3 4"/>
+            <!-- glow under Liberec/Praha -->
+            <circle cx="195" cy="120" r="80" fill="url(#glow)"/>
+            <!-- pin: Liberec -->
+            <g>
+              <circle cx="170" cy="105" r="6" fill="#e57b3f"/>
+              <circle cx="170" cy="105" r="14" fill="none" stroke="#e57b3f" stroke-opacity=".4">
+                <animate attributeName="r" values="14;26;14" dur="3s" repeatCount="indefinite"/>
+                <animate attributeName="stroke-opacity" values=".5;0;.5" dur="3s" repeatCount="indefinite"/>
+              </circle>
+              <text x="180" y="100" fill="#f6e9d8" font-family="Inter" font-size="11" font-weight="600">Liberec</text>
+            </g>
+            <!-- pin: Praha -->
+            <g>
+              <circle cx="180" cy="160" r="6" fill="#e57b3f"/>
+              <circle cx="180" cy="160" r="14" fill="none" stroke="#e57b3f" stroke-opacity=".4">
+                <animate attributeName="r" values="14;26;14" dur="3s" begin=".7s" repeatCount="indefinite"/>
+                <animate attributeName="stroke-opacity" values=".5;0;.5" dur="3s" begin=".7s" repeatCount="indefinite"/>
+              </circle>
+              <text x="190" y="164" fill="#f6e9d8" font-family="Inter" font-size="11" font-weight="600">Praha</text>
+            </g>
+            <!-- connecting line -->
+            <line x1="170" y1="105" x2="180" y2="160" stroke="#e57b3f" stroke-width="1.5" stroke-dasharray="3 3" opacity=".6"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testimonial-section">
+    <div class="container">
+      <div class="quote-block reveal">
+        <blockquote>
+          Od&nbsp;první konzultace přes pevně dohodnutý rozpočet až&nbsp;po&nbsp;předání &mdash;
+          žádná překvapení, žádné kompromisy v&nbsp;materiálu. Krov a&nbsp;střecha drží 25&nbsp;let
+          a&nbsp;vypadají jako nové.
+        </blockquote>
+        <div class="quote-author">— Filozofie firmy od&nbsp;roku 2000</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="kontakt" class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <div class="contact-card reveal">
+          <span class="eyebrow">Kontakt</span>
+          <h2>Pojďme to&nbsp;dát dohromady.</h2>
+          <p>Konzultace i&nbsp;kalkulace jsou zdarma. Ozvěte se&nbsp;telefonem, e-mailem nebo přes formulář &mdash; vrátíme se&nbsp;k&nbsp;vám zpravidla do&nbsp;24&nbsp;hodin.</p>
+
+          <ul class="contact-list">
+            <li>
+              <span class="ic" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+              </span>
+              <div>
+                <span class="lbl">Telefon</span>
+                <span class="val"><a href="tel:+420603123456">+420 603 123 456</a></span>
+              </div>
+            </li>
+            <li>
+              <span class="ic" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+              </span>
+              <div>
+                <span class="lbl">E-mail</span>
+                <span class="val"><a href="mailto:info@strechy-in.cz">info@strechy-in.cz</a></span>
+              </div>
+            </li>
+            <li>
+              <span class="ic" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+              <div>
+                <span class="lbl">Působnost</span>
+                <span class="val">Liberecký kraj · Praha · Středočeský kraj</span>
+              </div>
+            </li>
+            <li>
+              <span class="ic" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </span>
+              <div>
+                <span class="lbl">Reakční doba</span>
+                <span class="val">Pracovní dny do 24 hodin</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
 
 <footer>
   <div class="container">
-    <p>&copy; 2000–2026 Slavomír Konvalinka – Střechy-interiéry.cz. Všechna práva vyhrazena.</p>
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="logo"><span class="dot" aria-hidden="true"></span>STŘECHY·IN</a>
+        <p class="tag">Slavomír Konvalinka &mdash; tesařské, pokrývačské, klempířské a&nbsp;truhlářské práce. Střechy a&nbsp;interiéry od&nbsp;roku 2000.</p>
+      </div>
+      <div>
+        <h4>Navigace</h4>
+        <ul>
+          <li><a href="#o-nas">O nás</a></li>
+          <li><a href="#sluzby">Služby</a></li>
+          <li><a href="#postup">Postup</a></li>
+          <li><a href="#region">Region</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="tel:+420603123456">+420 603 123 456</a></li>
+          <li><a href="mailto:info@strechy-in.cz">info@strechy-in.cz</a></li>
+          <li>Liberecký kraj &amp; Praha</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2000–2026 Slavomír Konvalinka · Střechy-Interiéry</span>
+      <span>Postaveno s důrazem na řemeslo.</span>
+    </div>
   </div>
 </footer>
 
+<script>
+  // Mobile nav
+  const burger = document.getElementById('hamburger');
+  const menu = document.getElementById('nav-menu');
+  burger.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    burger.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }));
+
+  // Nav scrolled state
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
