@@ -306,6 +306,43 @@
     .btn .arrow { transition: transform .2s; }
     .btn:hover .arrow { transform: translateX(3px); }
 
+    /* BTC accepted badge */
+    .btc-badge {
+      --btc: #f7931a;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .55rem .95rem .55rem .6rem;
+      border-radius: 999px;
+      background: rgba(247,147,26,.1);
+      border: 1px solid rgba(247,147,26,.35);
+      color: #8a4a00;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      white-space: nowrap;
+      transition: background .2s, transform .2s;
+    }
+    .btc-badge:hover { background: rgba(247,147,26,.18); transform: translateY(-1px); }
+    .btc-badge .btc-ic {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--btc);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      line-height: 1;
+    }
+    /* Inverted variant for dark backgrounds (contact card) */
+    .btc-badge.on-dark {
+      background: rgba(247,147,26,.15);
+      border-color: rgba(247,147,26,.5);
+      color: #ffd9a8;
+    }
+
     .hero-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1009,6 +1046,10 @@
             <span class="arrow" aria-hidden="true">→</span>
           </a>
           <a href="#sluzby" class="btn btn-ghost">Co umíme</a>
+          <span class="btc-badge" title="Přijímáme platby v Bitcoinu">
+            <span class="btc-ic" aria-hidden="true">₿</span>
+            Přijímáme Bitcoin (BTC)
+          </span>
         </div>
 
         <div class="hero-stats" style="margin-top: 2.4rem;">
@@ -1387,7 +1428,21 @@
                 <span class="val">Pracovní dny do 24 hodin</span>
               </div>
             </li>
+            <li>
+              <span class="ic" aria-hidden="true" style="background: rgba(247,147,26,.2); color: #f7931a;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" fill="#f7931a" stroke="none"/><text x="12" y="16" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#fff" stroke="none">₿</text></svg>
+              </span>
+              <div>
+                <span class="lbl">Způsob platby</span>
+                <span class="val">Přijímáme Bitcoin (BTC) &mdash; <span style="color: #ffd9a8;">platby v kryptoměně vítány</span></span>
+              </div>
+            </li>
           </ul>
+
+          <span class="btc-badge on-dark" style="margin-top: 1.5rem;" title="Přijímáme platby v Bitcoinu">
+            <span class="btc-ic" aria-hidden="true">₿</span>
+            BTC accepted
+          </span>
         </div>
 
       </div>
