@@ -832,38 +832,50 @@
       background: var(--bg-2);
     }
     .contact-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: clamp(2rem, 4vw, 4rem);
-      align-items: stretch;
+      display: flex;
+      justify-content: center;
     }
-    @media (max-width: 880px) { .contact-grid { grid-template-columns: 1fr; } }
     .contact-card {
+      width: 100%;
+      max-width: 720px;
       background: var(--ink);
       color: var(--bg);
       border-radius: var(--r-lg);
-      padding: clamp(2rem, 4vw, 3rem);
+      padding: clamp(2rem, 5vw, 3.5rem);
       position: relative;
       overflow: hidden;
+      text-align: center;
     }
     .contact-card::before {
       content: "";
       position: absolute;
-      inset: auto -30% -50% auto;
-      width: 360px; height: 360px;
-      background: radial-gradient(closest-side, rgba(229,123,63,.5), transparent);
+      inset: auto -20% -40% auto;
+      width: 420px; height: 420px;
+      background: radial-gradient(closest-side, rgba(229,123,63,.45), transparent);
       pointer-events: none;
     }
     .contact-card h2 { color: var(--bg); }
-    .contact-card .eyebrow { color: var(--accent-2); }
-    .contact-card p { color: rgba(246,241,234,.75); }
+    .contact-card .eyebrow {
+      color: var(--accent-2);
+      justify-content: center;
+    }
+    .contact-card p {
+      color: rgba(246,241,234,.75);
+      max-width: 48ch;
+      margin-inline: auto;
+    }
 
     .contact-list {
       list-style: none;
       padding: 0;
-      margin: 1.8rem 0 0;
+      margin: 2rem 0 0;
       display: grid;
-      gap: 1.1rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.4rem 1.6rem;
+      text-align: left;
+    }
+    @media (max-width: 560px) {
+      .contact-list { grid-template-columns: 1fr; }
     }
     .contact-list li {
       display: flex;
@@ -1387,7 +1399,7 @@
             </li>
           </ul>
 
-          <span class="btc-badge on-dark" style="margin-top: 1.5rem;" title="Přijímáme platby v Bitcoinu">
+          <span class="btc-badge on-dark" style="margin-top: 2rem;" title="Přijímáme platby v Bitcoinu">
             <span class="btc-ic" aria-hidden="true">₿</span>
             BTC accepted
           </span>
